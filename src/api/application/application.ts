@@ -118,7 +118,6 @@ export default class ApplicationModule extends Base {
 /**
  * @classdesc An object representing an application. Allows the developer to create,
  * execute, show/close an application as well as listen to application events.
- * @class
  */
 export class Application extends EmitterBase<ApplicationEvents> {
     public _manifestUrl?: string;
@@ -153,6 +152,16 @@ export class Application extends EmitterBase<ApplicationEvents> {
     public isRunning(): Promise<boolean> {
         return this.wire.sendAction('is-application-running', this.identity)
             .then(({ payload }) => payload.data);
+    }
+
+    /**
+     * Uploads app log to Log Manager
+     * @return {Promise.<any>}
+     * @tutorial Application.sendApplicationLog
+     */
+    public async sendApplicationLog(): Promise<any> {
+        const { payload } = await this.wire.sendAction('send-application-log', this.identity);
+        return payload.data;
     }
 
     /**
