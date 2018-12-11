@@ -1,11 +1,11 @@
-import { EmitterBase, Base, Reply } from '../base';
 import { Identity } from '../../identity';
-import { _Window } from '../window/window';
-import { Point } from '../system/point';
-import { MonitorInfo } from '../system/monitor';
 import Transport from '../../transport/transport';
-import Bounds from '../window/bounds';
+import { Base, EmitterBase, Reply } from '../base';
 import { ApplicationEvents } from '../events/application';
+import { MonitorInfo } from '../system/monitor';
+import { Point } from '../system/point';
+import Bounds from '../window/bounds';
+import { _Window } from '../window/window';
 import { ApplicationOption } from './applicationOption';
 
 export interface TrayIconClickReply extends Point, Reply<'application', 'tray-icon-clicked'> {
@@ -155,7 +155,7 @@ export class Application extends EmitterBase<ApplicationEvents> {
     }
 
     /**
-     * Uploads app log to Log Manager
+     * Uploads app log to Log Manager and returns a promise containing the log id.
      * @return {Promise.<any>}
      * @tutorial Application.sendApplicationLog
      */
